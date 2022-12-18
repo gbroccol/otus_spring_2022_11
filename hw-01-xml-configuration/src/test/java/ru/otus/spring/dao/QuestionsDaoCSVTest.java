@@ -2,9 +2,8 @@ package ru.otus.spring.dao;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.otus.spring.model.Question;
 
-import java.util.Collection;
+import java.util.List;
 
 class QuestionsDaoCSVTest {
 
@@ -12,7 +11,11 @@ class QuestionsDaoCSVTest {
 
     @Test
     void findAllCheckResultSize() {
-        Collection<Question> result = questionsDaoCSV.findAll();
-        Assertions.assertEquals(5, result.size());
+
+        List<String[]> dataAsList = questionsDaoCSV.getDataAsList();
+
+        Assertions.assertEquals(20, dataAsList.size());
+        Assertions.assertEquals(5, dataAsList.stream().map(x -> x[0]).distinct().count());
+
     }
 }
