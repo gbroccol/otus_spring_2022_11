@@ -4,16 +4,4 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="questionsDao" class="ru.otus.spring.dao.QuestionsDaoCSV">
-        <constructor-arg name="csvFilePath" value="questions.csv"/>
-    </bean>
-
-    <bean id="questionsRepositoryImpl" class="ru.otus.spring.repository.QuestionsRepositoryImpl">
-        <constructor-arg name="questionsDao" ref="questionsDao"/>
-    </bean>
-
-    <bean id="questionsService" class="ru.otus.spring.service.QuestionServiceImpl">
-        <constructor-arg name="questionsRepository" ref="questionsRepositoryImpl"/>
-    </bean>
-
 </beans>

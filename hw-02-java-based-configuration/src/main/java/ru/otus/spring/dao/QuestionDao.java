@@ -2,6 +2,6 @@ package ru.otus.spring.dao;
 
 import java.util.List;
 
-public interface QuestionsDao {
+public interface QuestionDao {
     List<String[]> getDataAsList();
 }

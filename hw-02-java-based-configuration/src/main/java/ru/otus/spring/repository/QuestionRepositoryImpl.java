@@ -1,27 +1,27 @@
 package ru.otus.spring.repository;
 
-import ru.otus.spring.dao.QuestionsDao;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+import ru.otus.spring.dao.QuestionDao;
 import ru.otus.spring.model.Answer;
 import ru.otus.spring.model.Question;
 
 import java.util.*;
 
-public class QuestionsRepositoryImpl implements QuestionsRepository {
+@Repository
+@RequiredArgsConstructor
+public class QuestionRepositoryImpl implements QuestionRepository {
 
     private final static Integer QUESTION_POSITION = 0;
     private final static Integer ANSWER_POSITION = 1;
     private final static Integer IS_CORRECT_POSITION = 2;
 
-    private final QuestionsDao questionsDao;
-
-    public QuestionsRepositoryImpl(QuestionsDao questionsDao) {
-        this.questionsDao = questionsDao;
-    }
+    private final QuestionDao questionDao;
 
     @Override
-    public Collection<Question> findAll() {
+    public List<Question> findAll() {
 
-        List<String[]> data = questionsDao.getDataAsList();
+        List<String[]> data = questionDao.getDataAsList();
         Map<String, Question> questions = new HashMap<>();
 
         for (String[] line : data) {
@@ -38,6 +38,6 @@ public class QuestionsRepositoryImpl implements QuestionsRepository {
             }
         }
 
-        return questions.values();
+        return new ArrayList<>(questions.values());
     }
 }
