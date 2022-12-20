@@ -14,7 +14,7 @@ public class App {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(App.class);
 
         User user = context.getBean(UserService.class).getUser();
-        context.getBean(TestService.class).testUser(user);
+        context.getBean(TestService.class).runTestReturnSuccess(user);
         context.close();
     }
 }

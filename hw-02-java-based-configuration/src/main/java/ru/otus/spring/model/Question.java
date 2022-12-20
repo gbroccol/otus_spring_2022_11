@@ -2,6 +2,7 @@ package ru.otus.spring.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 public class Question {
 
     String question;
+
+    @NonNull
     List<Answer> answers;
 
 }
