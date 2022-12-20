@@ -17,7 +17,7 @@ import java.util.Scanner;
 @Service
 public class TestService implements DisposableBean {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner userInput = new Scanner(System.in);
 
     private final Integer minRightAnswers;
     private final QuestionService questionService;
@@ -42,30 +42,30 @@ public class TestService implements DisposableBean {
             }
             printTestResult(user, rightAnswersCount);
         } catch (AnswerOutOfBoundException e) {
-            outputString(Color.ANSI_RED + "Given number of answer is out of range. Please start test again" + Color.ANSI_RESET);
+            IOService.outputString(Color.ANSI_RED + "Given number of answer is out of range. Please start test again" + Color.ANSI_RESET);
         } catch (NumberFormatException e) {
-            outputString(Color.ANSI_RED + "Given answer is not a number. Please start test again" + Color.ANSI_RESET);
+            IOService.outputString(Color.ANSI_RED + "Given answer is not a number. Please start test again" + Color.ANSI_RESET);
         }
     }
 
     private void printTestRules(int questionSize) {
-        outputString(Color.ANSI_BLUE + "There are " + questionSize + " question(-s). You must answer at least " +
+        IOService.outputString(Color.ANSI_BLUE + "There are " + questionSize + " question(-s). You must answer at least " +
                 minRightAnswers + " question(-s) to receive credit\n" + Color.ANSI_RESET);
     }
 
     private void printQuestion(Question question) {
 
-        outputString(question.getQuestion());
+        IOService.outputString(question.getQuestion());
 
         int answerNumber = 0;
         for (Answer answer : question.getAnswers()) {
-            outputString(answerNumber++ + ". " + answer.getAnswer());
+            IOService.outputString(answerNumber++ + ". " + answer.getAnswer());
         }
     }
 
     private int getAnswer() {
         System.out.print("Enter the number of right option: ");
-        return Integer.parseInt(scanner.nextLine());
+        return IOService.readInt(userInput);
     }
 
     private boolean checkAnswerCorrect(Question question, int answerNumber) throws AnswerOutOfBoundException {
@@ -74,31 +74,27 @@ public class TestService implements DisposableBean {
             throw new AnswerOutOfBoundException("Given number of answer is out of range");
         
         if (question.getAnswers().get(answerNumber).getCorrect()) {
-            outputString(Color.ANSI_GREEN + "OK\n" + Color.ANSI_RESET);
+            IOService.outputString(Color.ANSI_GREEN + "OK\n" + Color.ANSI_RESET);
             return true;
         }
-        outputString(Color.ANSI_RED + "ERROR\n" + Color.ANSI_RESET);
+        IOService.outputString(Color.ANSI_RED + "ERROR\n" + Color.ANSI_RESET);
         return false;
     }
 
     private void printTestResult(User user, int rightAnswersCount) {
 
-        outputString("================================================");
+        IOService.outputString("================================================");
 
         if (rightAnswersCount >= minRightAnswers) {
-            outputString(user.getFirstName() + " " + user.getLastName() + ", congratulations! Test passed!");
+            IOService.outputString(user.getFirstName() + " " + user.getLastName() + ", congratulations! Test passed!");
         }
         else {
-            outputString(user.getFirstName() + " " + user.getLastName() + ", you have not passed this test :(");
+            IOService.outputString(user.getFirstName() + " " + user.getLastName() + ", you have not passed this test :(");
         }
-    }
-    
-    private void outputString(String s) {
-        System.out.println(s);
     }
 
     @Override
     public void destroy() {
-        scanner.close();
+        userInput.close();
     }
 }
