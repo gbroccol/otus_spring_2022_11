@@ -31,7 +31,23 @@ class TestServiceTest {
 
     @BeforeEach
     void setUp() {
+
         testService = new TestService(3, questionService, ioService);
+
+        List<Answer> answerListMock = new ArrayList<>();
+        answerListMock.add(new Answer("answer1", true));
+        answerListMock.add(new Answer("answer2", false));
+        answerListMock.add(new Answer("answer3", false));
+        answerListMock.add(new Answer("answer4", false));
+
+        List<Question> questionListMock = new ArrayList<>();
+        questionListMock.add(new Question("question1", answerListMock));
+        questionListMock.add(new Question("question2", answerListMock));
+        questionListMock.add(new Question("question3", answerListMock));
+        questionListMock.add(new Question("question4", answerListMock));
+        questionListMock.add(new Question("question5", answerListMock));
+
+        given(questionService.findAll()).willReturn(questionListMock);
     }
 
     @Test
@@ -60,40 +76,14 @@ class TestServiceTest {
     @Test
     @DisplayName("возвращает TRUE, если тест пройден")
     void returnTrueIfTestPassed() {
-
-        List<Answer> answerListMock = new ArrayList<>();
-        answerListMock.add(new Answer("answer1", true));
-
-        List<Question> questionListMock = new ArrayList<>();
-        questionListMock.add(new Question("question1", answerListMock));
-        questionListMock.add(new Question("question2", answerListMock));
-        questionListMock.add(new Question("question3", answerListMock));
-        questionListMock.add(new Question("question4", answerListMock));
-        questionListMock.add(new Question("question5", answerListMock));
-
-        given(questionService.findAll()).willReturn(questionListMock);
         given(ioService.readInt()).willReturn(0);
-
         Assertions.assertTrue(testService.runTestReturnSuccess(new User("Ivan", "Ivanov")));
     }
 
     @Test
     @DisplayName("возвращает FALSE, если тест не пройден")
     void returnFalseIfTestNotPassed() {
-        List<Answer> answerListMock = new ArrayList<>();
-        answerListMock.add(new Answer("answer1", true));
-        answerListMock.add(new Answer("answer2", false));
-
-        List<Question> questionListMock = new ArrayList<>();
-        questionListMock.add(new Question("question1", answerListMock));
-        questionListMock.add(new Question("question2", answerListMock));
-        questionListMock.add(new Question("question3", answerListMock));
-        questionListMock.add(new Question("question4", answerListMock));
-        questionListMock.add(new Question("question5", answerListMock));
-
-        given(questionService.findAll()).willReturn(questionListMock);
         given(ioService.readInt()).willReturn(1);
-
         Assertions.assertFalse(testService.runTestReturnSuccess(new User("Ivan", "Ivanov")));
     }
 }
