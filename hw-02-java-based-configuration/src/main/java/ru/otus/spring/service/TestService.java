@@ -86,10 +86,7 @@ public class TestService {
     }
 
     private Boolean isSuccess(int rightAnswersCount) {
-        if (rightAnswersCount >= minRightAnswers) {
-            return true;
-        }
-        return false;
+        return rightAnswersCount >= minRightAnswers;
     }
 
     private void printTestResult(User user, boolean success) {
