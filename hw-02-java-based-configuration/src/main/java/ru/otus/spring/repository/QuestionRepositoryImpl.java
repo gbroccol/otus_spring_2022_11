@@ -1,14 +1,14 @@
 package ru.otus.spring.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.spring.dao.QuestionDao;
 import ru.otus.spring.model.Answer;
 import ru.otus.spring.model.Question;
 
 import java.util.*;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class QuestionRepositoryImpl implements QuestionRepository {
 
