@@ -15,6 +15,5 @@ public class App {
 
         User user = context.getBean(UserService.class).getUser();
         context.getBean(TestService.class).runTestReturnSuccess(user);
-        context.close();
     }
 }
