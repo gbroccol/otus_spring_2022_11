@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.otus.spring.exception.AnswerOutOfBoundException;
 import ru.otus.spring.model.Answer;
 import ru.otus.spring.model.Question;
 import ru.otus.spring.model.User;
@@ -55,8 +56,6 @@ class TestServiceTest {
     void checkNullPointerException() {
         Assertions.assertThrows(NullPointerException.class, () -> testService.runTestReturnSuccess(null));
     }
-
-// ----------- >>>>> Подскажите пожалуйста как тестировать исключения, если мы их отловили или в этом нет смысла? <<<<< -----------
 
 //    @Test
 //    @DisplayName("выбрасывает исключение, если не существует ответа для введенного значения")
