@@ -2,15 +2,18 @@ package ru.otus.spring.dao;
 
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.*;
 
-public class QuestionsDaoCSV implements QuestionsDao {
+@Component
+public class QuestionDaoCSV implements QuestionDao {
 
-    private final String csvFilePath;
+    private String csvFilePath;
 
-    public QuestionsDaoCSV(String csvFilePath) {
+    public QuestionDaoCSV(@Value("${csv.file.path}") String csvFilePath) {
         this.csvFilePath = csvFilePath;
     }
 
