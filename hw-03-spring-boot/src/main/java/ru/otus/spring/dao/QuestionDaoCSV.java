@@ -4,8 +4,8 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ru.otus.spring.config.QuestionnaireProperties;
 
 import java.io.*;
 import java.util.List;
@@ -17,8 +17,8 @@ public class QuestionDaoCSV implements QuestionDao {
     private final String csvFilePath;
     private static final Logger logger = LoggerFactory.getLogger(QuestionDaoCSV.class);
 
-    public QuestionDaoCSV(@Value("${csv.file.path}") String csvFilePath) {
-        this.csvFilePath = csvFilePath;
+    public QuestionDaoCSV(QuestionnaireProperties questionnaireProperties) {
+        this.csvFilePath = questionnaireProperties.getCsvFileName();
     }
 
     @Override

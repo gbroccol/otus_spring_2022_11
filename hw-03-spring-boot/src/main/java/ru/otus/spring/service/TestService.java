@@ -1,9 +1,9 @@
 package ru.otus.spring.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import ru.otus.spring.config.QuestionnaireProperties;
 import ru.otus.spring.exception.AnswerOutOfBoundException;
 import ru.otus.spring.model.Answer;
 import ru.otus.spring.model.Question;
@@ -20,10 +20,10 @@ public class TestService {
     private final QuestionService questionService;
     private final IOService ioService;
 
-    public TestService(@Value("${min.right.answers}") Integer minRightAnswers,
+    public TestService(QuestionnaireProperties questionnaireProperties,
                        QuestionService questionService,
                        @Qualifier("ioServiceConsole") IOService ioService) {
-        this.minRightAnswers = minRightAnswers;
+        this.minRightAnswers = questionnaireProperties.getMinRightAnswers();
         this.questionService = questionService;
         this.ioService = ioService;
     }

@@ -6,9 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "resources")
-public class ResourcesProperties {
+@ConfigurationProperties(prefix = "questionnaire")
+public class QuestionnaireProperties {
 
     private String csvFileName;
+    private Integer minRightAnswers;
 
 }

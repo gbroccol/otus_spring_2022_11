@@ -14,3 +14,7 @@ server:
 
 application:
   locale: ru_RU
+
+questionnaire:
+  csv-file-name: "questions.csv"
+  min-right-answers: 1
