@@ -16,8 +16,9 @@ import java.util.Map;
 public class QuestionRepositoryImpl implements QuestionRepository {
 
     private final static Integer QUESTION_POSITION = 0;
-    private final static Integer ANSWER_POSITION = 1;
-    private final static Integer IS_CORRECT_POSITION = 2;
+    private final static Integer OPTION_FROM_POSITION = 1;
+    private final static Integer OPTION_TO_POSITION = 4;
+    private final static Integer ANSWER_POSITION = 5;
 
     private final QuestionDao questionDao;
 
@@ -25,22 +26,16 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     public List<Question> findAll() {
 
         List<String[]> data = questionDao.getDataAsList();
-        Map<String, Question> questions = new HashMap<>();
+        List<Question> questions = new ArrayList<>();
 
         for (String[] line : data) {
-            Question question = questions.get(line[QUESTION_POSITION]);
-            if (question == null) {
-                List <Answer> answers = new ArrayList<>();
-                boolean isCorrect = line[IS_CORRECT_POSITION].equalsIgnoreCase("true");
-                answers.add(new Answer(line[ANSWER_POSITION], isCorrect));
-                question = new Question(line[QUESTION_POSITION], answers);
-                questions.put(line[QUESTION_POSITION], question);
-            } else {
-                boolean isCorrect = line[IS_CORRECT_POSITION].equalsIgnoreCase("true");
-                question.getAnswers().add(new Answer(line[ANSWER_POSITION], isCorrect));
+            int correctAnswerPosition = Integer.parseInt(line[ANSWER_POSITION]);
+            List<Answer> answers = new ArrayList<>();
+            for (int pos = OPTION_FROM_POSITION; pos <= OPTION_TO_POSITION; pos++) {
+                answers.add(new Answer(line[pos], pos == correctAnswerPosition));
             }
+            questions.add(new Question(line[QUESTION_POSITION], answers));
         }
-
-        return new ArrayList<>(questions.values());
+        return questions;
     }
 }

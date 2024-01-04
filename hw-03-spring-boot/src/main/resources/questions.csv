@@ -1,21 +1,6 @@
-question,answer,correct
-What do you need to do to understand recursive?,study a lot,false111
-What do you need to do to understand recursive?,understand recursive,true
-What do you need to do to understand recursive?,read books,false
-What do you need to do to understand recursive?,something else,false
-What is the capital of Great Britain?,Canberra,false
-What is the capital of Great Britain?,Ottawa,false
-What is the capital of Great Britain?,London,true
-What is the capital of Great Britain?,Washington, D.C.,false
-The Ultimate Question of Life the Universe and Everything,42,true
-The Ultimate Question of Life the Universe and Everything,21,false
-The Ultimate Question of Life the Universe and Everything,24,false
-The Ultimate Question of Life the Universe and Everything,146,false
-The most popular female name in America,Ivan,false
-The most popular female name in America,Emma,false
-The most popular female name in America,Mary,true
-The most popular female name in America,Elizabeth,false
-To be or not to be?,it' s a difficult question,true
-To be or not to be?,nobody knows,false
-To be or not to be?,to be,false
-To be or not to be?,not to be,false
+question,option1,option2,option3,option4,answer
+What do you need to do to understand recursive?,study a lot,understand recursive,read books,something else,2
+What is the capital of Great Britain?,Canberra,Ottawa,London,Washington D.C.,3
+The Ultimate Question of Life the Universe and Everything,42,21,24,0,1
+The most popular female name in America,Ivan,Emma,Mary,Elizabeth,3
+To be or not to be?,it' s a difficult question,nobody knows,to be,not to be,1
