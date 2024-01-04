@@ -24,7 +24,7 @@ public class QuestionDaoCSV implements QuestionDao {
     @Override
     public List<String[]> getDataAsList() {
 
-        logger.info("Получаем вопросы... Путь к файлу - {} ", csvFilePath);
+        logger.info("We receive questions... Path to file - {} ", csvFilePath);
 
         BufferedInputStream bis = new BufferedInputStream(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(csvFilePath)));
         Reader br = new BufferedReader(new InputStreamReader(bis));

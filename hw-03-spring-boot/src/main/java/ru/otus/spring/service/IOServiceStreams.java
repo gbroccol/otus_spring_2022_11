@@ -17,7 +17,7 @@ public class IOServiceStreams implements IOService, DisposableBean {
     }
 
     public void outputString(String s) {
-        output.println(s);
+        output.print(s);
     }
 
     public int readInt() {

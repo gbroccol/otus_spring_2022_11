@@ -7,7 +7,6 @@ import ru.otus.spring.service.IOService;
 import ru.otus.spring.service.IOServiceStreams;
 
 @Configuration
-//@PropertySource("classpath:application.properties")
 @EnableConfigurationProperties({ApplicationProperties.class, QuestionnaireProperties.class})
 public class ApplicationConfig {
 

@@ -13,8 +13,8 @@ server:
   port: 8080
 
 application:
-  locale: ru_RU
+  locale: en
 
 questionnaire:
-  csv-file-name: "questions.csv"
+  csv-file-name:  "questions_${application.locale}.csv"
   min-right-answers: 1

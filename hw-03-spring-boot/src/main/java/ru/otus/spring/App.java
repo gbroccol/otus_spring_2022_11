@@ -15,6 +15,6 @@ public class App {
         var context = SpringApplication.run(App.class);
 
         User user = context.getBean(UserService.class).getUser();
-        context.getBean(TestService.class).runTestReturnSuccess(user);
+        context.getBean(TestService.class).runTest(user);
     }
 }
