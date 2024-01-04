@@ -1,6 +1,6 @@
 spring:
   messages:
-    basename: "i18n/appmessages"
+    basename: "i18n/bundle"
     encoding: "UTF-8"
 
 management:
