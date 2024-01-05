@@ -1,0 +1,32 @@
+package ru.otus.spring.service;
+
+import org.springframework.beans.factory.DisposableBean;
+
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class IOServiceStreams implements IOService, DisposableBean {
+
+    private final PrintStream output;
+    private final Scanner input;
+
+    public IOServiceStreams(PrintStream out,
+                            InputStream in) {
+        this.output = out;
+        this.input = new Scanner(in);
+    }
+
+    public void outputString(String s) {
+        output.print(s);
+    }
+
+    public int inputInt() {
+        return Integer.parseInt(input.nextLine());
+    }
+
+    @Override
+    public void destroy() {
+        input.close();
+    }
+}
