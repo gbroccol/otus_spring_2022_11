@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.otus</groupId>
-    <artifactId>spring-05-springBoot</artifactId>
+    <artifactId>spring-05-springShell</artifactId>
     <version>1.0</version>
 
     <parent>
@@ -12,11 +12,14 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.3</version>
     </parent>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-
+        <spring.shell.version>2.1.0</spring.shell.version>
         <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
         <minimal.maven.version>3.3.9</minimal.maven.version>
     </properties>
@@ -24,6 +27,18 @@
 
     <!-- Стартеры -->
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.shell</groupId>
+            <artifactId>spring-shell-starter</artifactId>
+            <version>${spring.shell.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
