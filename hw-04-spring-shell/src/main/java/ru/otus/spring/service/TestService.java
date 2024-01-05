@@ -48,11 +48,11 @@ public class TestService {
             printTestResult(isSuccess(rightAnswersCount), rightAnswersCount);
 
         } catch (AnswerOutOfBoundException e) {
-            ioService.outputString(Color.ANSI_RED + "Given number of answer is out of range. Please start test again" + Color.ANSI_RESET);
+            ioService.outputStringNextLine(Color.ANSI_RED + "Given number of answer is out of range. Please start test again" + Color.ANSI_RESET);
         } catch (NumberFormatException e) {
-            ioService.outputString(Color.ANSI_RED + "Given answer is not a number. Please start test again" + Color.ANSI_RESET);
+            ioService.outputStringNextLine(Color.ANSI_RED + "Given answer is not a number. Please start test again" + Color.ANSI_RESET);
         } catch (QuestionsReadingException e) {
-            ioService.outputString(Color.ANSI_RED + "An error occurred while receiving test questions" + Color.ANSI_RESET);
+            ioService.outputStringNextLine(Color.ANSI_RED + "An error occurred while receiving test questions" + Color.ANSI_RESET);
         }
     }
 
@@ -94,11 +94,11 @@ public class TestService {
     }
 
     private void printTestResult(boolean success, int answeredAmount) {
-        ioService.outputString(messageService.getMessage("test.questions.answered.amount", answeredAmount));
+        ioService.outputStringNextLine(messageService.getMessage("test.questions.answered.amount", answeredAmount));
         if (success) {
-            ioService.outputString(messageService.getMessage("test.finish.success"));
+            ioService.outputStringNextLine(messageService.getMessage("test.finish.success"));
         } else {
-            ioService.outputString(messageService.getMessage("test.finish.fail"));
+            ioService.outputStringNextLine(messageService.getMessage("test.finish.fail"));
         }
     }
 }

@@ -21,6 +21,10 @@ public class IOServiceStreams implements IOService, DisposableBean {
         output.print(s);
     }
 
+    public void outputStringNextLine(String s) {
+        output.println(s);
+    }
+
     public int inputInt() {
         return Integer.parseInt(input.nextLine());
     }
