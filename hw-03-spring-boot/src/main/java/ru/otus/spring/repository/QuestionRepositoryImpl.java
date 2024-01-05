@@ -3,6 +3,7 @@ package ru.otus.spring.repository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.otus.spring.dao.QuestionDao;
+import ru.otus.spring.exception.QuestionsReadingException;
 import ru.otus.spring.model.Answer;
 import ru.otus.spring.model.Question;
 
@@ -23,7 +24,7 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     private final QuestionDao questionDao;
 
     @Override
-    public List<Question> findAll() {
+    public List<Question> findAll() throws QuestionsReadingException {
 
         List<String[]> data = questionDao.getDataAsList();
         List<Question> questions = new ArrayList<>();

@@ -22,10 +22,10 @@ public class UserService implements DisposableBean {
 
     public User getUser() {
 
-        ioService.outputString(messageService.getMessageEnterFirstName());
+        ioService.outputString(messageService.getMessage("enter.first.name"));
         String firstName = scanner.nextLine();
 
-        ioService.outputString(messageService.getMessageEnterLastName());
+        ioService.outputString(messageService.getMessage("enter.last.name"));
         String lastName = scanner.nextLine();
 
         return new User(firstName, lastName);

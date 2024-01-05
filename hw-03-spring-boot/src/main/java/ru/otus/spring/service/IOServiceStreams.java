@@ -11,16 +11,17 @@ public class IOServiceStreams implements IOService, DisposableBean {
     private final PrintStream output;
     private final Scanner input;
 
-    public IOServiceStreams(PrintStream output, InputStream inputStream) {
-        this.output = output;
-        input = new Scanner(inputStream);
+    public IOServiceStreams(PrintStream out,
+                            InputStream in) {
+        this.output = out;
+        this.input = new Scanner(in);
     }
 
     public void outputString(String s) {
         output.print(s);
     }
 
-    public int readInt() {
+    public int inputInt() {
         return Integer.parseInt(input.nextLine());
     }
 

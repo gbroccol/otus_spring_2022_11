@@ -4,10 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@Getter
 @Setter
+@Getter
 @ConfigurationProperties(prefix = "questionnaire")
-public class QuestionnaireProperties {
+public class QuestionnaireProp implements QuestionnairePropFile, QuestionnairePropRules {
 
     private String csvFileName;
     private Integer minRightAnswers;

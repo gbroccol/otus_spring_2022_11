@@ -2,6 +2,7 @@ package ru.otus.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.otus.spring.exception.QuestionsReadingException;
 import ru.otus.spring.model.Question;
 import ru.otus.spring.repository.QuestionRepository;
 
@@ -14,7 +15,7 @@ public class QuestionService implements ServiceCRUD<Question> {
     private final QuestionRepository repository;
 
     @Override
-    public List<Question> findAll() {
+    public List<Question> findAll() throws QuestionsReadingException {
         return repository.findAll();
     }
 }

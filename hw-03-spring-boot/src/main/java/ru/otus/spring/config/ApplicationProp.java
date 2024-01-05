@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Locale;
 
-@Getter
 @Setter
+@Getter
 @ConfigurationProperties(prefix = "application")
-public class ApplicationProperties {
+public class ApplicationProp implements ApplicationPropLocale {
 
     private Locale locale;
 

@@ -3,8 +3,9 @@ package ru.otus.spring.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-import ru.otus.spring.config.QuestionnaireProperties;
+import ru.otus.spring.config.QuestionnairePropRules;
 import ru.otus.spring.exception.AnswerOutOfBoundException;
+import ru.otus.spring.exception.QuestionsReadingException;
 import ru.otus.spring.model.Answer;
 import ru.otus.spring.model.Question;
 import ru.otus.spring.model.User;
@@ -21,11 +22,11 @@ public class TestService {
     private final IOService ioService;
     private final MessageService messageService;
 
-    public TestService(QuestionnaireProperties questionnaireProperties,
+    public TestService(QuestionnairePropRules questionnairePropRules,
                        QuestionService questionService,
                        @Qualifier("ioServiceConsole") IOService ioService,
                        MessageService messageService) {
-        this.minRightAnswers = questionnaireProperties.getMinRightAnswers();
+        this.minRightAnswers = questionnairePropRules.getMinRightAnswers();
         this.questionService = questionService;
         this.ioService = ioService;
         this.messageService = messageService;
@@ -33,28 +34,32 @@ public class TestService {
 
     public void runTest(@NonNull User user) {
 
-        List<Question> questions = questionService.findAll();
-        printTestRules(questions.size());
-
         try {
+            List<Question> questions = questionService.findAll();
+            printTestRules(questions.size());
+
             int rightAnswersCount = 0;
             for (Question question : questions) {
                 printQuestion(question);
                 int answerNumber = getAnswer();
                 rightAnswersCount += checkAnswerCorrect(question, answerNumber) ? 1 : 0;
             }
+
             printTestResult(isSuccess(rightAnswersCount), rightAnswersCount);
+
         } catch (AnswerOutOfBoundException e) {
             ioService.outputString(Color.ANSI_RED + "Given number of answer is out of range. Please start test again" + Color.ANSI_RESET);
         } catch (NumberFormatException e) {
             ioService.outputString(Color.ANSI_RED + "Given answer is not a number. Please start test again" + Color.ANSI_RESET);
+        } catch (QuestionsReadingException e) {
+            ioService.outputString(Color.ANSI_RED + "An error occurred while receiving test questions" + Color.ANSI_RESET);
         }
     }
 
-    private void printTestRules(int questionSize) {
-        ioService.outputString(Color.ANSI_BLUE + messageService.getMessageTestQuestionsAmount(new Integer[]{questionSize}) + Color.ANSI_RESET);
-        ioService.outputString(Color.ANSI_BLUE + messageService.getMessageTestQuestionsMinCorrectAmount(new Integer[]{minRightAnswers}) + Color.ANSI_RESET);
-        ioService.outputString("\n");
+    private void printTestRules(int questionsAmount) {
+        ioService.outputString(Color.ANSI_BLUE + messageService.getMessage("test.questions.amount", questionsAmount) + Color.ANSI_RESET);
+        ioService.outputString(Color.ANSI_BLUE + messageService.getMessage("test.questions.min.correct.amount", minRightAnswers) + Color.ANSI_RESET);
+        ioService.outputString(System.lineSeparator());
     }
 
     private void printQuestion(Question question) {
@@ -67,8 +72,8 @@ public class TestService {
     }
 
     private int getAnswer() {
-        ioService.outputString(messageService.getMessageEnterAnswerNumber());
-        return ioService.readInt();
+        ioService.outputString(messageService.getMessage("enter.answer.number"));
+        return ioService.inputInt();
     }
 
     private boolean checkAnswerCorrect(Question question, int answerNumber) throws AnswerOutOfBoundException {
@@ -89,11 +94,11 @@ public class TestService {
     }
 
     private void printTestResult(boolean success, int answeredAmount) {
-        ioService.outputString(messageService.getMessageTestQuestionsAnsweredAmount(new Integer[]{answeredAmount}));
+        ioService.outputString(messageService.getMessage("test.questions.answered.amount", answeredAmount));
         if (success) {
-            ioService.outputString(messageService.getMessageTestFinishSuccess());
+            ioService.outputString(messageService.getMessage("test.finish.success"));
         } else {
-            ioService.outputString(messageService.getMessageTestFinishFail());
+            ioService.outputString(messageService.getMessage("test.finish.fail"));
         }
     }
 }
