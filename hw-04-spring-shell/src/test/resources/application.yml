@@ -1,0 +1,14 @@
+spring:
+  shell:
+    interactive:
+      enabled: false
+  messages:
+    basename: "i18n/bundle"
+    encoding: "UTF-8"
+
+application:
+  locale: en
+
+questionnaire:
+  csv-file-name:  "questions_${application.locale}.csv"
+  min-right-answers: 1
