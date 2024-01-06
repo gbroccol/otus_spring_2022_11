@@ -63,7 +63,6 @@ public class TestService {
     }
 
     private void printQuestion(Question question) {
-
         ioService.outputString(question.getQuestion() + "\n");
         int answerNumber = 0;
         for (Answer answer : question.getAnswers()) {
