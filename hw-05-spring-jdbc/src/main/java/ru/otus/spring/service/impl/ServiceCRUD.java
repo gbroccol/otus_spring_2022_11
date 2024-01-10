@@ -1,9 +1,12 @@
 package ru.otus.spring.service.impl;
 
-import ru.otus.spring.exception.QuestionsReadingException;
-
 import java.util.List;
 
 public interface ServiceCRUD<T> {
-   List<T> findAll() throws QuestionsReadingException;
+
+   void add(T element);
+   T findById(Long id);
+   List<T> findAll();
+   void deleteById(Long id);
+
 }
