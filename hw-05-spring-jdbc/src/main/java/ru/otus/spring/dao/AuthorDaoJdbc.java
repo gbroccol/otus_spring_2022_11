@@ -25,9 +25,8 @@ public class AuthorDaoJdbc implements CRUD<Author> {
     @Override
     public void insert(Author author) {
         namedParameterJdbcOperations.update(
-                "insert into author (author_id, first_name, last_name) values (:author_id, :first_name, :last_name)",
-                Map.of("author_id", author.getAuthorId(),
-                        "first_name", author.getFirstName(),
+                "insert into author (first_name, last_name) values (:first_name, :last_name)",
+                Map.of("first_name", author.getFirstName(),
                         "last_name", author.getLastName()));
     }
 
