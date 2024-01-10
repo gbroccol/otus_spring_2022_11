@@ -7,6 +7,7 @@ import ru.otus.spring.dao.BookDaoJdbc;
 import ru.otus.spring.dao.GenreDaoJdbc;
 import ru.otus.spring.domain.Book;
 import ru.otus.spring.service.IOService;
+import ru.otus.spring.service.OutService;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class BookService {
     private final AuthorDaoJdbc authorDaoJdbc;
     private final BookDaoJdbc bookDaoJdbc;
     private final GenreDaoJdbc genreDaoJdbc;
-    private final IOService ioService;
+    private final OutService outService;
 
     public void add(String title, long authorId, long genreId) {
         bookDaoJdbc.insert(
@@ -41,7 +42,7 @@ public class BookService {
 
     public void print(List<Book> books) {
         for (Book book : books) {
-            ioService.outputStringNextLine(
+            outService.outputStringNextLine(
                     "id = " + book.getBookId() +
                             " | title = " + book.getTitle() +
                             " | author's first name = " + book.getAuthor().getFirstName() +

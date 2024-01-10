@@ -3,15 +3,15 @@ package ru.otus.spring.config;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.otus.spring.service.IOService;
 import ru.otus.spring.service.IOServiceStreams;
+import ru.otus.spring.service.OutService;
 
 @Configuration
-@EnableConfigurationProperties({ApplicationProp.class, QuestionnaireProp.class})
+@EnableConfigurationProperties
 public class ApplicationConfig {
 
     @Bean
-    IOService ioServiceConsole() {
+    OutService ioServiceConsole() {
         return new IOServiceStreams(System.out, System.in);
     }
 }

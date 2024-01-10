@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.spring.dao.AuthorDaoJdbc;
 import ru.otus.spring.domain.Author;
-import ru.otus.spring.service.IOService;
+import ru.otus.spring.service.OutService;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class AuthorService implements ServiceCRUD<Author>  {
 
     private final AuthorDaoJdbc authorDaoJdbc;
-    private final IOService ioService;
+    private final OutService outService;
 
     @Override
     public void add(Author element) {
@@ -37,7 +37,7 @@ public class AuthorService implements ServiceCRUD<Author>  {
 
     public void print(List<Author> authors) {
         for (Author author : authors) {
-            ioService.outputStringNextLine(
+            outService.outputStringNextLine(
                     "id = " + author.getAuthorId() +
                             " | firstName = " + author.getFirstName() +
                             "\t | lastName = " + author.getLastName());

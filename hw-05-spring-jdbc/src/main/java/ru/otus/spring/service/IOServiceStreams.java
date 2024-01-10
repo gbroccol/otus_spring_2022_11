@@ -1,12 +1,13 @@
 package ru.otus.spring.service;
 
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class IOServiceStreams implements IOService, DisposableBean {
+public class IOServiceStreams implements IOService, InService, OutService, DisposableBean {
 
     private final PrintStream output;
     private final Scanner input;

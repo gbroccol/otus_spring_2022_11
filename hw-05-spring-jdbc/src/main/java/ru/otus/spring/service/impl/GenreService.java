@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.otus.spring.dao.GenreDaoJdbc;
 import ru.otus.spring.domain.Genre;
 import ru.otus.spring.service.IOService;
+import ru.otus.spring.service.OutService;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class GenreService implements ServiceCRUD<Genre> {
 
     private final GenreDaoJdbc genreDaoJdbc;
-    private final IOService ioService;
+    private final OutService outService;
 
     @Override
     public void add(Genre element) {
@@ -37,7 +38,7 @@ public class GenreService implements ServiceCRUD<Genre> {
 
     public void print(List<Genre> genres) {
         for (Genre genre : genres) {
-            ioService.outputStringNextLine(
+            outService.outputStringNextLine(
                     "id = " + genre.getGenreId() +
                     " | title = " + genre.getTitle());
         }
