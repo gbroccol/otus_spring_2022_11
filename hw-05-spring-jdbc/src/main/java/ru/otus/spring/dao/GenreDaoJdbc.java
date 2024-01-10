@@ -25,9 +25,8 @@ public class GenreDaoJdbc implements CRUD<Genre> {
     @Override
     public void insert(Genre genre) {
         namedParameterJdbcOperations.update(
-                "insert into genre (genre_id, title) values (:genre_id, :title)",
-                Map.of("genre_id", genre.getGenreId(),
-                        "title", genre.getTitle()));
+                "insert into genre (title) values (:title)",
+                Map.of("title", genre.getTitle()));
     }
 
     @Override
