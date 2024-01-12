@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.otus.spring.domain.Author;
+import ru.otus.spring.model.Author;
 import ru.otus.spring.service.impl.AuthorService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class AuthorCommands {
     @ShellMethod(value = "Add new author", key = {"aa", "add-author"})
     public void addAuthor(@ShellOption String firstName,
                           @ShellOption String lastName) {
-        authorService.add(new Author(null, firstName, lastName));
+        authorService.add(new Author(null, firstName, lastName)); // todo del new
     }
 
     @ShellMethod(value = "Find author by id", key = {"fa", "find-author"})

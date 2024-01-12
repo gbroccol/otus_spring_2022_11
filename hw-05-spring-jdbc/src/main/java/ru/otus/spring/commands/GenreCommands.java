@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
-import ru.otus.spring.domain.Genre;
+import ru.otus.spring.model.Genre;
 import ru.otus.spring.service.impl.GenreService;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class GenreCommands {
 
     @ShellMethod(value = "Add new genre", key = {"ag", "add-genre"})
     public void addGenre(@ShellOption String genreName) {
-        genreService.add(new Genre(null, genreName));
+        genreService.add(new Genre(null, genreName)); // todo где правильно делать создание объекта?
     }
 
     @ShellMethod(value = "Find genre by id", key = {"fg", "find-genre"})
