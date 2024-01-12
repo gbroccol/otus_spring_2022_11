@@ -2,8 +2,8 @@ package ru.otus.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.otus.spring.dao.AuthorDaoJdbc;
-import ru.otus.spring.domain.Author;
+import ru.otus.spring.repository.AuthorRepository;
+import ru.otus.spring.model.Author;
 import ru.otus.spring.service.OutService;
 
 import java.util.List;
@@ -12,34 +12,34 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthorService implements ServiceCRUD<Author>  {
 
-    private final AuthorDaoJdbc authorDaoJdbc;
+    private final AuthorRepository authorRepository;
     private final OutService outService;
 
     @Override
     public void add(Author element) {
-        authorDaoJdbc.insert(element);
+        authorRepository.insert(element);
     }
 
     @Override
     public Author findById(Long id) {
-        return authorDaoJdbc.getById(id);
+        return authorRepository.getById(id);
     }
 
     @Override
     public List<Author> findAll() {
-        return authorDaoJdbc.getAll();
+        return authorRepository.getAll();
     }
 
     @Override
     public void deleteById(Long id) {
-        authorDaoJdbc.deleteById(id);
+        authorRepository.deleteById(id);
     }
 
     public void print(List<Author> authors) {
         for (Author author : authors) {
             outService.outputStringNextLine(
                     "id = " + author.getAuthorId() +
-                            " | firstName = " + author.getFirstName() +
+                            "\t | firstName = " + author.getFirstName() +
                             "\t | lastName = " + author.getLastName());
         }
     }

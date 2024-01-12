@@ -2,11 +2,10 @@ package ru.otus.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.otus.spring.dao.AuthorDaoJdbc;
-import ru.otus.spring.dao.BookDaoJdbc;
-import ru.otus.spring.dao.GenreDaoJdbc;
-import ru.otus.spring.domain.Book;
-import ru.otus.spring.service.IOService;
+import ru.otus.spring.repository.AuthorRepository;
+import ru.otus.spring.repository.BookRepository;
+import ru.otus.spring.repository.GenreRepository;
+import ru.otus.spring.model.Book;
 import ru.otus.spring.service.OutService;
 
 import java.util.List;
@@ -15,39 +14,39 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookService {
 
-    private final AuthorDaoJdbc authorDaoJdbc;
-    private final BookDaoJdbc bookDaoJdbc;
-    private final GenreDaoJdbc genreDaoJdbc;
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
+    private final GenreRepository genreRepository;
     private final OutService outService;
 
     public void add(String title, long authorId, long genreId) {
-        bookDaoJdbc.insert(
+        bookRepository.insert(
                 new Book(null,
                         title,
-                        authorDaoJdbc.getById(authorId),
-                        genreDaoJdbc.getById(genreId)));
+                        authorRepository.getById(authorId),
+                        genreRepository.getById(genreId)));
     }
 
     public Book findById(Long id) {
-        return bookDaoJdbc.getById(id);
+        return bookRepository.getById(id);
     }
 
     public List<Book> findAll() {
-        return bookDaoJdbc.getAll();
+        return bookRepository.getAll();
     }
 
     public void deleteById(Long id) {
-        bookDaoJdbc.deleteById(id);
+        bookRepository.deleteById(id);
     }
 
     public void print(List<Book> books) {
         for (Book book : books) {
             outService.outputStringNextLine(
                     "id = " + book.getBookId() +
-                            " | title = " + book.getTitle() +
-                            " | author's first name = " + book.getAuthor().getFirstName() +
-                            " | author's last name = " + book.getAuthor().getLastName() +
-                            " | genre = " + book.getGenre().getTitle());
+                            "\n\t | title = " + book.getTitle() +
+                            "\n\t | author's first name = " + book.getAuthor().getFirstName() +
+                            "\n\t | author's last name = " + book.getAuthor().getLastName() +
+                            "\n\t | genre = " + book.getGenre().getTitle());
         }
     }
 }
