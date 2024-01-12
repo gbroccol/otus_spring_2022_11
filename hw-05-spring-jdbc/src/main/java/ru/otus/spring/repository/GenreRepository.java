@@ -1,11 +1,11 @@
-package ru.otus.spring.dao;
+package ru.otus.spring.repository;
 
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
-import ru.otus.spring.dao.interf.CRUD;
-import ru.otus.spring.domain.Genre;
+import ru.otus.spring.repository.interf.CRUD;
+import ru.otus.spring.model.Genre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class GenreDaoJdbc implements CRUD<Genre> {
+public class GenreRepository implements CRUD<Genre> {
 
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
 
-    public GenreDaoJdbc(NamedParameterJdbcOperations namedParameterJdbcOperations) {
+    public GenreRepository(NamedParameterJdbcOperations namedParameterJdbcOperations) {
         this.namedParameterJdbcOperations = namedParameterJdbcOperations;
     }
 
@@ -35,7 +35,7 @@ public class GenreDaoJdbc implements CRUD<Genre> {
         return namedParameterJdbcOperations.queryForObject(
                 "select genre_id, title from genre where genre_id = :genre_id",
                 params,
-                new GenreDaoJdbc.GenreMapper()
+                new GenreRepository.GenreMapper()
         );
     }
 
@@ -43,7 +43,7 @@ public class GenreDaoJdbc implements CRUD<Genre> {
     public List<Genre> getAll() {
         JdbcOperations jdbc = namedParameterJdbcOperations.getJdbcOperations();
         return jdbc.query("select genre_id, title from genre",
-                new GenreDaoJdbc.GenreMapper());
+                new GenreRepository.GenreMapper());
     }
 
     @Override

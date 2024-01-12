@@ -1,11 +1,11 @@
-package ru.otus.spring.dao;
+package ru.otus.spring.repository;
 
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
-import ru.otus.spring.dao.interf.CRUD;
-import ru.otus.spring.domain.Author;
+import ru.otus.spring.repository.interf.CRUD;
+import ru.otus.spring.model.Author;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class AuthorDaoJdbc implements CRUD<Author> {
+public class AuthorRepository implements CRUD<Author> {
 
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
 
-    public AuthorDaoJdbc(NamedParameterJdbcOperations namedParameterJdbcOperations) {
+    public AuthorRepository(NamedParameterJdbcOperations namedParameterJdbcOperations) {
         this.namedParameterJdbcOperations = namedParameterJdbcOperations;
     }
 
