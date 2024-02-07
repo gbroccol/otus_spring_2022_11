@@ -18,3 +18,4 @@ CREATE TABLE book (
     genre_id        INT             REFERENCES genre(genre_id),
     CONSTRAINT PK_Book PRIMARY KEY (book_id)
 );
+
