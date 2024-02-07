@@ -1,5 +1,6 @@
 package ru.otus.spring.repository;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -14,13 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@RequiredArgsConstructor
 public class AuthorRepository implements CRUD<Author> {
 
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
-
-    public AuthorRepository(NamedParameterJdbcOperations namedParameterJdbcOperations) {
-        this.namedParameterJdbcOperations = namedParameterJdbcOperations;
-    }
 
     @Override
     public void insert(Author author) {
