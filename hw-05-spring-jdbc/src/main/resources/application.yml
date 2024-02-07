@@ -1,20 +1,11 @@
 spring:
-  messages:
-    basename: "i18n/bundle"
-    encoding: "UTF-8"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: info, health, beans
-
-server:
-  port: 8080
-
-application:
-  locale: en
-
-questionnaire:
-  csv-file-name:  "questions_${application.locale}.csv"
-  min-right-answers: 1
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  liquibase:
+    enabled: true
