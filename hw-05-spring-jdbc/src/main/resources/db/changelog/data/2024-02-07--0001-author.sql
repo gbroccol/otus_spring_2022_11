@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset gbroccol:2024-02-07-001-author
+-- liquibase formatted sql
+-- changeset gbroccol:1 runOnChange:true splitStatements=true rollbackSplitStatements:false end-delimiter=";"
 
 INSERT INTO author (first_name, last_name)
 VALUES ('Михаил', 'Булгаков'),

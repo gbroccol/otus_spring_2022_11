@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset gbroccol:2024-02-07-003-book
+-- liquibase formatted sql
+-- changeset gbroccol:1 runOnChange:true splitStatements=true rollbackSplitStatements:false end-delimiter=";"
 
 INSERT INTO book (title, author_id, genre_id)
 VALUES ('Мастер и Маргарита', 1, 4),

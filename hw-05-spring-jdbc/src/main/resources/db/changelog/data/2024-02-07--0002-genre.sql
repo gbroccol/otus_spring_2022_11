@@ -1,5 +1,5 @@
---liquibase formatted sql
---changeset gbroccol:2024-02-07-002-genre
+-- liquibase formatted sql
+-- changeset gbroccol:1 runOnChange:true splitStatements=true rollbackSplitStatements:false end-delimiter=";"
 
 INSERT INTO genre (title)
 VALUES ('роман'),
