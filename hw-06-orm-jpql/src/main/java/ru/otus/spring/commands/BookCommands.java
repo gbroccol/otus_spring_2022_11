@@ -5,7 +5,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import ru.otus.spring.model.Book;
-import ru.otus.spring.service.impl.BookService;
+import ru.otus.spring.service.impl.BookServiceImpl;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookCommands {
 
-    private final BookService bookService;
+    private final BookServiceImpl bookService;
 
     @ShellMethod(value = "Add new book", key = {"ab", "add-book"})
     public void addBook(@ShellOption String title,
                         @ShellOption long authorId,
                         @ShellOption long genreId) {
-        bookService.add(title, authorId, genreId);
+        bookService.save(title, authorId, genreId);
     }
 
     @ShellMethod(value = "Find book by id", key = {"fb", "find-book"})

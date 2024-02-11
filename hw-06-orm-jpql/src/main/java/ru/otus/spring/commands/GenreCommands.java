@@ -17,11 +17,11 @@ public class GenreCommands {
 
     @ShellMethod(value = "Add new genre", key = {"ag", "add-genre"})
     public void addGenre(@ShellOption String genreName) {
-        genreService.add(new Genre(null, genreName)); // todo где правильно делать создание объекта?
+        genreService.save(genreName);
     }
 
     @ShellMethod(value = "Find genre by id", key = {"fg", "find-genre"})
-    public void findById(@ShellOption Long id) {
+    public void findById(@ShellOption long id) {
         Genre genre = genreService.findById(id);
         genreService.print(List.of(genre));
     }

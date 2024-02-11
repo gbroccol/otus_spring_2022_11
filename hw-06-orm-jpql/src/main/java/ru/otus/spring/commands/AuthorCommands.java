@@ -18,7 +18,7 @@ public class AuthorCommands {
     @ShellMethod(value = "Add new author", key = {"aa", "add-author"})
     public void addAuthor(@ShellOption String firstName,
                           @ShellOption String lastName) {
-        authorService.add(new Author(null, firstName, lastName)); // todo del new
+        authorService.save(firstName, lastName);
     }
 
     @ShellMethod(value = "Find author by id", key = {"fa", "find-author"})
@@ -29,7 +29,8 @@ public class AuthorCommands {
 
     @ShellMethod(value = "Find all authors", key = {"fas", "find-all-authors"})
     public void findAll() {
-        authorService.print(authorService.findAll());
+        List<Author> authors = authorService.findAll();
+        authorService.print(authors);
     }
 
     @ShellMethod(value = "Delete author by id", key = {"da", "delete-author"})
