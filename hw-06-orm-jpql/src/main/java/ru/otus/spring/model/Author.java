@@ -1,21 +1,16 @@
 package ru.otus.spring.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
-//@NoArgsConstructor
-//@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Author {
+
     private Long authorId;
     private String firstName;
     private String lastName;
 
-
-    public Author(Long authorId, String firstName, String lastName) {
-        this.authorId = authorId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }
