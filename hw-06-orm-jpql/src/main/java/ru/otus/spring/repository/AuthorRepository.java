@@ -34,14 +34,8 @@ public class AuthorRepository implements CRUD<Author> {
 
     @Override
     public List<Author> findAll() {
-
         return em.createQuery("select a from Author a", Author.class)
                 .getResultList();
-
-//        EntityGraph<?> entityGraph = em.getEntityGraph("otus-student-avatars-entity-graph");
-//        TypedQuery<Author> query = em.createQuery("select s from Author s join fetch s.emails", Author.class);
-//        query.setHint("javax.persistence.fetchgraph", entityGraph);
-//        return query.getResultList();
     }
 
     @Override

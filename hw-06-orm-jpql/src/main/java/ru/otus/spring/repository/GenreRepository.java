@@ -36,11 +36,6 @@ public class GenreRepository implements CRUD<Genre> {
     public List<Genre> findAll() {
         return em.createQuery("select g from Genre g", Genre.class)
                 .getResultList();
-
-//        EntityGraph<?> entityGraph = em.getEntityGraph("otus-student-avatars-entity-graph");
-//        TypedQuery<Author> query = em.createQuery("select s from Author s join fetch s.emails", Author.class);
-//        query.setHint("javax.persistence.fetchgraph", entityGraph);
-//        return query.getResultList();
     }
 
     @Override
