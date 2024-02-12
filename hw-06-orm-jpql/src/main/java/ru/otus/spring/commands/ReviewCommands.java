@@ -31,7 +31,7 @@ public class ReviewCommands {
         reviewService.print(reviewService.findByBookId(bookId));
     }
 
-    @ShellMethod(value = "Delete review by id", key = {"dg", "delete-review"})
+    @ShellMethod(value = "Delete review by id", key = {"dr", "delete-review"})
     public void deleteById(@ShellOption long id) {
         reviewService.deleteById(id);
     }

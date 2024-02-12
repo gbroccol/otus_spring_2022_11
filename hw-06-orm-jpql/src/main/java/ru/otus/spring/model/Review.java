@@ -21,7 +21,7 @@ public class Review {
     @Column(name = "message", nullable = false, length = 300)
     private String message;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="book_id", nullable=false)
     private Book book;
 

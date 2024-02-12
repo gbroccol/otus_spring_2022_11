@@ -49,8 +49,8 @@ public class AuthorRepository implements CRUD<Author> {
         Query query = em.createQuery(
                 "delete " +
                         "from Author a " +
-                        "where a.author_id = :author_id");
-        query.setParameter("author_id", id);
+                        "where a.authorId = :authorId");
+        query.setParameter("authorId", id);
         query.executeUpdate();
     }
 }

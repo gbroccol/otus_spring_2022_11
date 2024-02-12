@@ -23,12 +23,6 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    @Transactional
-    public void update(long genreId, String title) {
-        genreRepository.save(new Genre(genreId, title));
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Genre findById(long id) {
         return genreRepository.findById(id).orElse(null);

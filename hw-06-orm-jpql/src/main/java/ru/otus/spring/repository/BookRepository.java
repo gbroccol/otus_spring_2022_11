@@ -47,8 +47,8 @@ public class BookRepository implements CRUD<Book> {
         Query query = em.createQuery(
                 "delete " +
                         "from Book b " +
-                        "where b.book_id = :book_id");
-        query.setParameter("book_id", id);
+                        "where b.bookId = :bookId");
+        query.setParameter("bookId", id);
         query.executeUpdate();
     }
 }

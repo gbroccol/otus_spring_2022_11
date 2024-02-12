@@ -33,8 +33,8 @@ public class ReviewRepositoryJpa implements ReviewRepository {
 
     @Override
     public List<Review> findByBookId(long bookId) {
-        var query = em.createQuery("select r from Review r WHERE r.book_id = :book_id", Review.class);
-        query.setParameter("book_id", bookId);
+        var query = em.createQuery("select r from Review r WHERE book_id = :bookId", Review.class);
+        query.setParameter("bookId", bookId);
         return query.getResultList();
     }
 
@@ -42,8 +42,8 @@ public class ReviewRepositoryJpa implements ReviewRepository {
     public void deleteById(long id) {
         Query query = em.createQuery("delete " +
                         "from Review r " +
-                        "where r.review_id = :review_id");
-        query.setParameter("review_id", id);
+                        "where r.reviewId = :reviewId");
+        query.setParameter("reviewId", id);
         query.executeUpdate();
     }
 

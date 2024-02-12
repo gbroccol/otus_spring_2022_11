@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface GenreService {
     void save(String title);
-    void update(long genreId, String title);
     Genre findById(long id);
     List<Genre> findAll();
     void deleteById(long id);

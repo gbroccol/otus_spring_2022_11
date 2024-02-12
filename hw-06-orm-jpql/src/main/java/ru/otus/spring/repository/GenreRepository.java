@@ -48,8 +48,8 @@ public class GenreRepository implements CRUD<Genre> {
         Query query = em.createQuery(
                 "delete " +
                         "from Genre g " +
-                        "where g.genre_id = :genre_id");
-        query.setParameter("genre_id", id);
+                        "where g.genreId = :genreId");
+        query.setParameter("genreId", id);
         query.executeUpdate();
     }
 }

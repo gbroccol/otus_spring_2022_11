@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookService {
    void save(String title, long authorId, long genreId);
-   void update(long bookId, String title, long authorId, long genreId);
+   void save(long bookId, String title, long authorId, long genreId);
    Book findById(long id);
    List<Book> findAll();
    void deleteById(long id);
