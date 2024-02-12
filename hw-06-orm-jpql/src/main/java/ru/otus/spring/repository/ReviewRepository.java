@@ -9,6 +9,5 @@ public interface ReviewRepository {
     Review save(Review review);
     Optional<Review> findById(long id);
     List<Review> findByBookId(long id);
-    void update(Review review);
     void deleteById(long id);
 }

@@ -2,6 +2,7 @@ package ru.otus.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.repository.GenreRepository;
 import ru.otus.spring.model.Genre;
 import ru.otus.spring.service.OutService;
@@ -16,26 +17,31 @@ public class GenreServiceImpl implements GenreService {
     private final OutService outService;
 
     @Override
+    @Transactional
     public void save(String title) {
         genreRepository.save(new Genre(0, title));
     }
 
     @Override
+    @Transactional
     public void update(long genreId, String title) {
         genreRepository.save(new Genre(genreId, title));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Genre findById(long id) {
         return genreRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Genre> findAll() {
         return genreRepository.findAll();
     }
 
     @Override
+    @Transactional
     public void deleteById(long id) {
         genreRepository.deleteById(id);
     }

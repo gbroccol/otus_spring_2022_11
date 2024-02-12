@@ -2,6 +2,7 @@ package ru.otus.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.exception.AuthorNotExistsException;
 import ru.otus.spring.exception.GenreNotExistsException;
 import ru.otus.spring.repository.AuthorRepository;
@@ -26,6 +27,7 @@ public class BookServiceImpl implements BookService {
     private final OutService outService;
 
     @Override
+    @Transactional
     public void save(String title, long authorId, long genreId) {
         try {
             var author = authorRepository.findById(authorId)
@@ -40,6 +42,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public void update(long bookId, String title, long authorId, long genreId) {
         try {
             var author = authorRepository.findById(authorId)
@@ -55,16 +58,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Book findById(long id) {
         return bookRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
     @Override
+    @Transactional
     public void deleteById(long id) {
         bookRepository.deleteById(id);
     }

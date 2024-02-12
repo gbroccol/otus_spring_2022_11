@@ -2,6 +2,7 @@ package ru.otus.spring.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.exception.BookNotExistsException;
 import ru.otus.spring.model.Review;
 import ru.otus.spring.repository.BookRepository;
@@ -21,6 +22,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final OutService outService;
 
     @Override
+    @Transactional
     public void save(String message, long bookId) {
         try {
             var book = bookRepository.findById(bookId)
@@ -33,16 +35,19 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Review findById(long id) {
         return reviewRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Review> findByBookId(long bookId) {
         return reviewRepository.findByBookId(bookId);
     }
 
     @Override
+    @Transactional
     public void deleteById(long id) {
         reviewRepository.deleteById(id);
     }
