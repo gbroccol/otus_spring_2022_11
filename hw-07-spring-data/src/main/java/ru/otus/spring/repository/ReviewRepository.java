@@ -1,13 +1,11 @@
 package ru.otus.spring.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.otus.spring.model.Review;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ReviewRepository {
-    Review save(Review review);
-    Optional<Review> findById(long id);
-    List<Review> findByBookId(long id);
-    void deleteById(long id);
+public interface ReviewRepository extends JpaRepository<Review, Long> {
+
+    List<Review> findByBook(Long bookId);
 }

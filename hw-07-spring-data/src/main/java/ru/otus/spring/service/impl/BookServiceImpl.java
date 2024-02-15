@@ -43,7 +43,7 @@ public class BookServiceImpl implements BookService {
                     .orElseThrow(() -> new GenreNotExistsException(MessageFormat.format("Book is not created. No genre_id = {0}.", genreId)));
             List<Review> reviews = null;
             if (bookId > 0) {
-                reviews = reviewRepository.findByBookId(bookId);
+                reviews = reviewRepository.findByBook(bookId);
             }
             var book = new Book(bookId, title, author, genre, reviews);
             bookRepository.save(book);

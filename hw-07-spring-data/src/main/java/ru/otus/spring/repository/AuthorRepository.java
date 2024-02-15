@@ -1,50 +1,26 @@
 package ru.otus.spring.repository;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import ru.otus.spring.model.Author;
-import ru.otus.spring.repository.interf.CRUD;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
-import java.util.Optional;
 
-@Repository
-@AllArgsConstructor
-public class AuthorRepository implements CRUD<Author> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+    List<Author> findAllByFirstName(String firstName);
 
-    @PersistenceContext
-    private final EntityManager em;
+    @Modifying
+    @Query("update Author a " +
+            "set a.lastName = :lastName " +
+            "where a.authorId = :authorId")
+    void updateAuthorById(@Param("authorId") Long authorId,
+                         @Param("lastName") String lastName);
 
-    @Override
-    public Author save(Author author) {
-        if (author.getAuthorId() <= 0) {
-            em.persist(author);
-            return author;
-        }
-        return em.merge(author);
-    }
+    @Modifying
+    @Query("delete Author a " +
+            "where a.authorId = :authorId")
+    int deleteByIdUsingJPQL(@Param("authorId") Long authorId);
 
-    @Override
-    public Optional<Author> findById(long id) {
-        return Optional.ofNullable(em.find(Author.class, id));
-    }
-
-    @Override
-    public List<Author> findAll() {
-        return em.createQuery("select a from Author a", Author.class)
-                .getResultList();
-    }
-
-    @Override
-    public void deleteById(long id) {
-        Query query = em.createQuery(
-                "delete " +
-                        "from Author a " +
-                        "where a.authorId = :authorId");
-        query.setParameter("authorId", id);
-        query.executeUpdate();
-    }
 }

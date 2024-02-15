@@ -19,7 +19,7 @@ public class GenreServiceImpl implements GenreService {
     @Override
     @Transactional
     public void save(String title) {
-        genreRepository.save(new Genre(0, title));
+        genreRepository.save(new Genre(null, title));
     }
 
     @Override

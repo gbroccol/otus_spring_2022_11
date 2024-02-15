@@ -6,22 +6,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import ru.otus.spring.model.Author;
 import ru.otus.spring.model.Book;
 import ru.otus.spring.model.Genre;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("Dao для работы с книгами должно")
 @DataJpaTest
-@Import(BookRepository.class)
+@DisplayName("Dao для работы с книгами должно")
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class BookRepositoryTest {
 
@@ -52,7 +49,7 @@ class BookRepositoryTest {
     @DisplayName("добавлять книгу в БД")
     @Test
     void shouldInsertBook() {
-        Book expectedBook = new Book(0, "Собачье сердце", EXISTING_BOOK_AUTHOR, EXISTING_BOOK_GENRE, new ArrayList<>());
+        Book expectedBook = new Book(null, "Собачье сердце", EXISTING_BOOK_AUTHOR, EXISTING_BOOK_GENRE, new ArrayList<>());
         expectedBook.setBookId(bookRepository.save(expectedBook).getBookId());
         Book actualBook = bookRepository.findById(expectedBook.getBookId()).orElse(null);
         assertThat(actualBook).usingRecursiveComparison().isEqualTo(expectedBook);
@@ -74,13 +71,8 @@ class BookRepositoryTest {
     @DisplayName("удалять заданную книгу по его id")
     @Test
     void shouldCorrectDeleteBookById() {
-
-        EntityManager em = tem.getEntityManager();
         assertThatCode(() -> bookRepository.findById(EXISTING_BOOK_ID)).doesNotThrowAnyException();
-
         bookRepository.deleteById(EXISTING_BOOK_ID);
-
-        em.clear();
         assertThat(bookRepository.findById(EXISTING_BOOK_ID)).isEmpty();
     }
 
@@ -90,16 +82,16 @@ class BookRepositoryTest {
         SessionFactory sessionFactory = tem.getEntityManager().getEntityManagerFactory().unwrap(SessionFactory.class);
         sessionFactory.getStatistics().setStatisticsEnabled(true);
 
-        System.out.println("\n\n\n\n----------------------------------------------------------------------------------------------------------");
+        System.out.println("\n\n\n\n-START---------------------------------------------------------------------------------------------------------");
         List<Book> actualBookList = bookRepository.findAll();
         assertThat(actualBookList)
                 .isNotNull()
                 .hasSize(EXPECTED_BOOKS_COUNT)
                 .allMatch(s -> !s.getTitle().isEmpty())
-                .allMatch(s -> s.getAuthor() != null)
-                .allMatch(s -> s.getGenre() != null)
-                .allMatch(s -> s.getReviews() != null && s.getReviews().isEmpty());
-        System.out.println("----------------------------------------------------------------------------------------------------------\n\n\n\n");
+                .allMatch(s -> s.getAuthor().getLastName() != null)
+                .allMatch(s -> s.getGenre().getTitle() != null)
+                .allMatch(s -> s.getReviews() != null && s.getReviews().isEmpty()); // добавить отзывы?
+        System.out.println("-FINISH---------------------------------------------------------------------------------------------------------\n\n\n\n");
         assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT);
     }
 }

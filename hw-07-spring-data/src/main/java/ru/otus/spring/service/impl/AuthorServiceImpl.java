@@ -19,7 +19,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     @Transactional
     public void save(String firstName, String lastName) {
-        authorRepository.save(new Author(0, firstName, lastName));
+        authorRepository.save(new Author(null, firstName, lastName));
     }
 
     @Override

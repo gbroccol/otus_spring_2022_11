@@ -27,7 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
         try {
             var book = bookRepository.findById(bookId)
                     .orElseThrow(() -> new BookNotExistsException(MessageFormat.format("Review is not created. No book_id = {0}.", bookId)));
-            var review = new Review(0, message, book);
+            var review = new Review(null, message, book);
             reviewRepository.save(review);
         } catch (BookNotExistsException e) {
             outService.outputStringNextLine(Color.ANSI_RED + e.getMessage() + Color.ANSI_RESET);
@@ -43,7 +43,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     @Transactional(readOnly = true)
     public List<Review> findByBookId(long bookId) {
-        return reviewRepository.findByBookId(bookId);
+        return reviewRepository.findByBook(bookId);
     }
 
     @Override

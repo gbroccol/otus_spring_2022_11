@@ -12,8 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedEntityGraph(name = "genre-entity-graph",
-        attributeNodes = {@NamedAttributeNode("genre")})
+//@NamedEntityGraph(name = "genre-entity-graph",
+//        attributeNodes = {@NamedAttributeNode("genre")})
 @Entity
 @Table(name = "book")
 public class Book {
@@ -21,7 +21,7 @@ public class Book {
     @Id
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long bookId;
+    private Long bookId;
 
     @Column(name = "title")
     private String title;
