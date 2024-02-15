@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.otus.spring.repository.interf.CRUD;
 import ru.otus.spring.model.Book;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.*;
 
 @Repository
@@ -33,13 +31,10 @@ public class BookRepository implements CRUD<Book> {
 
     @Override
     public List<Book> findAll() {
-        return em.createQuery("select b from Book b", Book.class)
-                .getResultList();
-
-//        EntityGraph<?> entityGraph = em.getEntityGraph("otus-student-avatars-entity-graph");
-//        TypedQuery<Author> query = em.createQuery("select s from Author s join fetch s.emails", Author.class);
-//        query.setHint("javax.persistence.fetchgraph", entityGraph);
-//        return query.getResultList();
+        EntityGraph<?> entityGraph = em.getEntityGraph("genre-entity-graph");
+        TypedQuery<Book> query = em.createQuery("select b from Book b  join fetch b.author", Book.class);
+        query.setHint("javax.persistence.fetchgraph", entityGraph);
+        return query.getResultList();
     }
 
     @Override
