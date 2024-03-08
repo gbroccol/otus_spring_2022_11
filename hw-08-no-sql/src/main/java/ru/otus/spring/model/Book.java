@@ -12,8 +12,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@NamedEntityGraph(name = "genre-entity-graph",
-//        attributeNodes = {@NamedAttributeNode("genre")})
 @Entity
 @Table(name = "book")
 public class Book {
@@ -35,6 +33,8 @@ public class Book {
     private Genre genre;
 
     @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book",
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
     private List<Review> reviews;
 }
