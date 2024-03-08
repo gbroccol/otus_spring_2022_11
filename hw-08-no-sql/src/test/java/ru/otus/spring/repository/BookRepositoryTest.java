@@ -28,7 +28,7 @@ class BookRepositoryTest {
     private static final Author EXISTING_BOOK_AUTHOR = new Author(1L, "Михаил", "Булгаков");
     private static final Genre EXISTING_BOOK_GENRE = new Genre(4L, "фантастика");
 
-    private static final int EXPECTED_QUERIES_COUNT = 2;
+    private static final int EXPECTED_QUERIES_COUNT = 1;
 
     @Autowired
     private BookRepository bookRepository;
@@ -89,9 +89,11 @@ class BookRepositoryTest {
                 .hasSize(EXPECTED_BOOKS_COUNT)
                 .allMatch(s -> !s.getTitle().isEmpty())
                 .allMatch(s -> s.getAuthor().getLastName() != null)
-                .allMatch(s -> s.getGenre().getTitle() != null)
-                .allMatch(s -> s.getReviews() != null && s.getReviews().isEmpty()); // добавить отзывы?
+                .allMatch(s -> s.getGenre().getTitle() != null);
         System.out.println("-FINISH---------------------------------------------------------------------------------------------------------\n\n\n\n");
+
         assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT);
+        assertThat(actualBookList).allMatch(s -> s.getReviews() != null && s.getReviews().isEmpty());
+        assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT + 1);
     }
 }
