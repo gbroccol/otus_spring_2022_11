@@ -14,13 +14,14 @@ public class BookDto {
     @NotNull
 //    @Size(min = 3, max = 20)
     private String title;
-//    private AuthorDto author;
-//    private GenreDto genre;
-//    private List<ReviewDto> reviews;
+    private AuthorDto author;
+    private GenreDto genre;
 
     public static BookDto toDto(Book book) {
         return new BookDto(book.getBookId(),
-                book.getTitle());
+                book.getTitle(),
+                AuthorDto.toDto(book.getAuthor()),
+                GenreDto.toDto(book.getGenre()));
     }
 
     public Book toDomainObject() {

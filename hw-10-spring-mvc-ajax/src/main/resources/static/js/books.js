@@ -18,8 +18,8 @@ function getAllBooks() {
 
                 tdId.innerHTML = bookDto.id;
                 tdTitle.innerHTML = bookDto.title;
-                tdAuthor.innerHTML = bookDto.authorLastName + " " + bookDto.authorFirstName;
-                tdGenre.innerHTML = bookDto.genre;
+                tdAuthor.innerHTML = bookDto.author.firstName + " " + bookDto.author.lastName;
+                tdGenre.innerHTML = bookDto.genre.title;
                 tdAction.innerHTML =
                     "<form action=/book/save/" + bookDto.id + "><button type=\"submit\">update</button></form>" +
                     "<button onclick=deleteBook(" + bookDto.id + ")>delete</button>" +
