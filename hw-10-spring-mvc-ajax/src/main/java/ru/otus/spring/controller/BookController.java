@@ -12,13 +12,13 @@ import ru.otus.spring.service.impl.BookServiceImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//GET /person/ - все пёрсоны
-//GET /person/{id} – получение
-//POST /person - создание
-//PUT /person/{id} – изменение/замена
-//PUT /person/{id}/account – изменение связанного
-//PATCH /person/{id} – изменение/обновление
-//DELETE /person/{id} - удаление
+// GET /api/v1/book/ - все книги
+// GET /person/{id} – получение
+// POST /person - создание
+// PUT /person/{id} – изменение/замена
+// PUT /person/{id}/account – изменение связанного
+// PATCH /person/{id} – изменение/обновление
+// DELETE /person/{id} - удаление
 
 @RestController
 @RequiredArgsConstructor
