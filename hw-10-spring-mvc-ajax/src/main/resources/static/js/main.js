@@ -151,16 +151,6 @@ function outputBook(character) {
 // <!--            .then(json => outputBook(json))-->
 // <!--    }-->
 
-function getDataByFetch() {
-	fetch('http://localhost:8080/api/v1/book')
-		.then(response => response.json())
-		.then(json => outputBook(json))
-}
-
-// getDataByFetch();
-
-
-
 
 
 // рабочий код ниже
