@@ -1,5 +1,6 @@
 package ru.otus.spring.dto;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.otus.spring.model.Book;
@@ -8,7 +9,10 @@ import ru.otus.spring.model.Book;
 @AllArgsConstructor
 public class BookDto {
 
-    private Long bookId;
+    private Long id;
+
+    @NotNull
+//    @Size(min = 3, max = 20)
     private String title;
 //    private AuthorDto author;
 //    private GenreDto genre;
@@ -20,6 +24,6 @@ public class BookDto {
     }
 
     public Book toDomainObject() {
-        return new Book(bookId, title, null, null, null); // fix
+        return new Book(id, title, null, null, null); // fix
     }
 }

@@ -30,22 +30,22 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public void save(String title, long authorId, long genreId) {
-        this.save(0, title, authorId, genreId);
+    public Book save(String title, long authorId, long genreId) {
+        return this.save(0, title, authorId, genreId);
     }
 
     @Override
     @Transactional
-    public void save(Book book) {
-        this.save(0,
+    public Book save(Book book) {
+        return this.save(0,
                 book.getTitle(),
-                book.getAuthor().getAuthorId(),
-                book.getGenre().getGenreId());
+                1, // book.getAuthor().getAuthorId(), //
+                1); //book.getGenre().getGenreId()); // fix
     }
 
     @Override
     @Transactional
-    public void save(long bookId, String title, long authorId, long genreId) {
+    public Book save(long bookId, String title, long authorId, long genreId) {
         try {
             var author = authorRepository.findById(authorId)
                     .orElseThrow(() -> new AuthorNotExistsException(MessageFormat.format("Book is not created. No author_id = {0}.", authorId)));
@@ -56,10 +56,11 @@ public class BookServiceImpl implements BookService {
                 reviews = reviewRepository.findByBook(bookId);
             }
             var book = new Book(bookId, title, author, genre, reviews);
-            bookRepository.save(book);
+            return bookRepository.save(book);
         } catch (AuthorNotExistsException | GenreNotExistsException e) {
             outService.outputStringNextLine(Color.ANSI_RED + e.getMessage() + Color.ANSI_RESET);
         }
+        return null;
     }
 
     @Override
