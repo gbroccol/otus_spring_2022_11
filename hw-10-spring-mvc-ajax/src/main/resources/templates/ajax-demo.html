@@ -1,0 +1,73 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All books</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .books {
+            border: 1px solid steelblue;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        .books tr td, th {
+            padding: 5px;
+            border: 1px solid steelblue;
+        }
+
+        .books td:last-child, td:first-child {
+            width: 50px;
+        }
+    </style>
+
+</head>
+    <button style = "width: 400px" onclick = "getDataByFetch()"> Получить данные о Бэт Смит с помощью Fetch</button><br/><br/>
+    <img id = "characterPhoto" style = "width: 400px; height: 400px; border: 1px solid gray">
+    <pre id = "dataContainer"></pre>
+<body>
+
+
+<h1>Books:</h1>
+
+<a href = "add.html" th:href = "@{/add}">Add new</a>
+<table class="books">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Author</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    </tbody>
+</table>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

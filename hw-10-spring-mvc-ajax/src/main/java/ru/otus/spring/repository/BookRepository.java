@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import ru.otus.spring.model.Book;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
@@ -13,4 +14,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "left join fetch b.author " +
             "left join fetch b.genre")
     List<Book> findAll();
+
+    List<Book> findByTitle(String title);
+
 }

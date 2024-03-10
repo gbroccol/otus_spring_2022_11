@@ -3,6 +3,7 @@ package ru.otus.spring.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.otus.spring.exceptions.NotFoundException;
 import ru.otus.spring.exception.AuthorNotExistsException;
 import ru.otus.spring.exception.GenreNotExistsException;
 import ru.otus.spring.model.Review;
@@ -35,6 +36,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
+    public void save(Book book) {
+        this.save(0,
+                book.getTitle(),
+                book.getAuthor().getAuthorId(),
+                book.getGenre().getGenreId());
+    }
+
+    @Override
+    @Transactional
     public void save(long bookId, String title, long authorId, long genreId) {
         try {
             var author = authorRepository.findById(authorId)
@@ -55,8 +65,17 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional(readOnly = true)
     public Book findById(long id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookRepository
+                .findById(id)
+                .orElseThrow(NotFoundException::new);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Book> findByTitle(String title) {
+        return bookRepository.findByTitle(title);
+    }
+
 
     @Override
     @Transactional(readOnly = true)
