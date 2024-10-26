@@ -4,76 +4,56 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Add new book</title>
-     <script type="text/javascript" src="js/books.js"></script>
-<!--    <link rel="stylesheet" href="css/main.css"/>-->
-    <style type="text/css">
-        body {
-            padding: 50px;
-        }
-
-        label {
-            display: inline-block;
-            width: 200px;
-        }
-
-        input:read-only {
-            background: lightgray;
-        }
-
-        .row {
-            margin-top: 10px;
-        }
-    </style>
+    <script type="text/javascript" src="js/author-get-all.js"></script>
+    <script type="text/javascript" src="js/genre-get-all.js"></script>
+    <script type="text/javascript" src="js/book-create.js"></script>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 
 <body>
 
-    <form id="save-form" action="save.html" th:method="post">
+<form id="save-form" action="save.html" th:method="post">
 
-        <h3>Add new book:</h3>
+    <h3>Add new book:</h3>
 
-        <div class="row">
-            <label for="book-title-input">Title: </label>
-            <input id="book-title-input"
-                   name="title"
-                   type="text"
-                   value="Введите название книги"
-                   required />
-        </div>
+    <div class="row">
+        <label for="book-title-input">Title: </label>
+        <input id="book-title-input"
+               name="title"
+               type="text"
+               value="Введите название книги"
+               required />
+    </div>
 
-        <div class="row">
-            <label for="book-author-input">Author: </label>
-            <select id="book-author-input" name="author">
-                <option selected="selected" value="Маяковский">Маяковский</option>
-                <option value="Пушкин">Пушкин</option>
-                <option value="Лермонтов">Лермонтов</option>
-            </select>
-        </div>
+    <div class="row">
+        <label for="book-author-input">Author: </label>
+        <select id="book-author-input" name="author">
+            <!-- Авторы будут загружены динамически -->
+        </select>
+    </div>
 
-        <div class="row">
-            <label for="book-genre-input">Genre: </label>
-            <select id="book-genre-input" name="genre">
-                <option selected="selected" value="Comedy">Comedy</option>
-                <option value="Drama">Drama</option>
-                <option value="Dystopia">Dystopia</option>
-                <option value="Science fiction">Science fiction</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="Detective">Detective</option>
-                <option value="Classic">Classic</option>
-                <option value="Horror">Horror</option>
-            </select>
-        </div>
-        <br>
+    <div class="row">
+        <label for="book-genre-input">Genre: </label>
+        <select id="book-genre-input" name="genre">
+            <!-- Жанры будут загружены динамически -->
+        </select>
+    </div>
+    <br>
 
-        <div class="row">
-            <button type="button" onclick="saveBook()" > Save </button>
-            <a href="index.html" th:href="@{/}"><button type="button">Go Back</button></a>
-        </div>
+    <div class="row">
+        <button type="button" onclick="saveBook()">Save</button>
+        <a href="index.html" th:href="@{/}"><button type="button">Go Back</button></a>
+    </div>
 
-    </form>
+</form>
 
-    <h3>Saved book:</h3>
-    <pre id = "saved-book"></pre>
+<h3>Saved book:</h3>
+<pre id="saved-book"></pre>
+
+<script>
+    loadAuthors()
+    loadGenres()
+</script>
 
 </body>
 </html>

@@ -1,9 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>List of all books</title>
-    <script type="text/javascript" src="js/books.js"></script>
+    <script type="text/javascript" src="js/book-get-all.js"></script>
+    <script type="text/javascript" src="js/book-delete.js"></script>
     <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
@@ -26,7 +27,7 @@
 <br>
 
 <div>
-    <button type="button" >
+    <button type="button">
         <a href="save.html" th:href="@{/save}"> Add new book </a>
     </button>
 </div>

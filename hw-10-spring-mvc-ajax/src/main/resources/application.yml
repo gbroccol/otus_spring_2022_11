@@ -22,4 +22,4 @@ spring:
         format_sql: false
 logging:
   level:
-    ROOT: ERROR
+    ROOT: INFO

@@ -4,10 +4,6 @@ html, body {
 
 body {
   background-color: #E4E5E7;
-  padding-top: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .aside {
   height: 400px;
