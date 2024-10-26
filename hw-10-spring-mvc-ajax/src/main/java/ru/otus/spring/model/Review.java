@@ -1,12 +1,13 @@
 package ru.otus.spring.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+//@Data - не писать - любое сравнение или логирование приведет к запросам в БД - сделает hashCode и toString, включая lazy поля
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

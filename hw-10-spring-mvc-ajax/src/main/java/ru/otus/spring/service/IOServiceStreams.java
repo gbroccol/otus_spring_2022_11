@@ -1,7 +1,6 @@
 package ru.otus.spring.service;
 
 import org.springframework.beans.factory.DisposableBean;
-import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.io.PrintStream;

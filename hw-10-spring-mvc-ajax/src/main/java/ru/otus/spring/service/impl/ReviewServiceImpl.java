@@ -51,13 +51,4 @@ public class ReviewServiceImpl implements ReviewService {
     public void deleteById(long id) {
         reviewRepository.deleteById(id);
     }
-
-    @Override
-    public void print(List<Review> reviews) {
-        for (Review review : reviews) {
-            outService.outputStringNextLine(
-                    "id = " + review.getReviewId() +
-                            "\t | message = " + review.getMessage());
-        }
-    }
 }

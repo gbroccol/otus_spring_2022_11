@@ -40,13 +40,4 @@ public class AuthorServiceImpl implements AuthorService {
         authorRepository.deleteById(id);
     }
 
-    @Override
-    public void print(List<Author> authors) {
-        for (Author author : authors) {
-            outService.outputStringNextLine(
-                    "id = " + author.getAuthorId() +
-                            "\t | firstName = " + author.getFirstName() +
-                            "\t | lastName = " + author.getLastName());
-        }
-    }
 }

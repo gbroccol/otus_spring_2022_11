@@ -1,4 +1,4 @@
-package ru.otus.spring.exceptions;
+package ru.otus.spring.exception;
 
 public class NotFoundException extends RuntimeException{
 

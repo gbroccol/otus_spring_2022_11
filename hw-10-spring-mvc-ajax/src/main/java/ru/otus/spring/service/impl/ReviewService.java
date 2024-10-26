@@ -8,5 +8,4 @@ public interface ReviewService {
    Review findById(long id);
    List<Review> findByBookId(long bookId);
    void deleteById(long id);
-   void print(List<Review> reviews);
 }

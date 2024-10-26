@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import ru.otus.spring.model.Book;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 

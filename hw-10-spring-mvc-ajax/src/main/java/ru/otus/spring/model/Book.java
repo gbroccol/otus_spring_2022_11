@@ -1,6 +1,6 @@
 package ru.otus.spring.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.Fetch;
@@ -9,12 +9,20 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+//@Data - не писать - любое сравнение или логирование приведет к запросам в БД - сделает hashCode и toString, включая lazy поля
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "book")
 public class Book {
+
+    public Book(Long bookId, String title, Author author, Genre genre) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+    }
 
     @Id
     @Column(name = "book_id")
@@ -36,5 +44,5 @@ public class Book {
     @OneToMany(mappedBy = "book",
             orphanRemoval = true,
             fetch = FetchType.LAZY)
-    private List<Review> reviews;
+    private List<Review> reviews; // todo delete field
 }

@@ -40,12 +40,4 @@ public class GenreServiceImpl implements GenreService {
         genreRepository.deleteById(id);
     }
 
-    @Override
-    public void print(List<Genre> genres) {
-        for (Genre genre : genres) {
-            outService.outputStringNextLine(
-                    "id = " + genre.getGenreId() +
-                            "\t | title = " + genre.getTitle());
-        }
-    }
 }

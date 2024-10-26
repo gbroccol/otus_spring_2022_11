@@ -9,5 +9,4 @@ public interface GenreService {
     Genre findById(long id);
     List<Genre> findAll();
     void deleteById(long id);
-    void print(List<Genre> genre);
 }
