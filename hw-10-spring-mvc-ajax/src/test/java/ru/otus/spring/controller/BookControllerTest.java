@@ -11,7 +11,7 @@ import ru.otus.spring.exception.NotFoundException;
 import ru.otus.spring.model.Author;
 import ru.otus.spring.model.Book;
 import ru.otus.spring.model.Genre;
-import ru.otus.spring.service.impl.BookService;
+import ru.otus.spring.service.BookService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,8 +111,8 @@ class BookControllerTest {
 
     @Test
     void shouldReturnExpectedErrorWhenPersonNotFound() throws Exception {
-        given(bookService.findById(BOOK_ID)).willThrow(new NotFoundException());
-        given(bookService.findByTitle(BOOK_TITLE)).willThrow(new NotFoundException());
+        given(bookService.findById(BOOK_ID)).willThrow(new NotFoundException(null));
+        given(bookService.findByTitle(BOOK_TITLE)).willThrow(new NotFoundException(null));
 
         mvc.perform(get("/api/v1/book/" + BOOK_ID))
                 .andExpect(status().isBadRequest())
