@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add new book</title>
+    <script type="text/javascript" src="js/author-get-all.js"></script>
+    <script type="text/javascript" src="js/genre-get-all.js"></script>
+    <script type="text/javascript" src="js/book-create.js"></script>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+
+<body>
+
+<form id="save-form" action="save.html" th:method="post">
+
+    <h3>Add new book:</h3>
+
+    <div class="row">
+        <label for="book-title-input">Title: </label>
+        <input id="book-title-input"
+               name="title"
+               type="text"
+               value="Введите название книги"
+               required />
+    </div>
+
+    <div class="row">
+        <label for="book-author-input">Author: </label>
+        <select id="book-author-input" name="author">
+            <!-- Авторы будут загружены динамически -->
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="book-genre-input">Genre: </label>
+        <select id="book-genre-input" name="genre">
+            <!-- Жанры будут загружены динамически -->
+        </select>
+    </div>
+    <br>
+
+    <div class="row">
+        <button type="button" onclick="saveBook()">Save</button>
+        <a href="index.html" th:href="@{/}"><button type="button">Go Back</button></a>
+    </div>
+
+</form>
+
+<h3>Saved book:</h3>
+<pre id="saved-book"></pre>
+
+<script>
+    loadAuthors()
+    loadGenres()
+</script>
+
+</body>
+</html>
