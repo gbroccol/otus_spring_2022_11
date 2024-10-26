@@ -1,30 +1,32 @@
 package ru.otus.spring.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.spring.exceptions.NotFoundException;
 import ru.otus.spring.dto.BookDto;
 import ru.otus.spring.model.Book;
-import ru.otus.spring.service.impl.BookServiceImpl;
+import ru.otus.spring.service.impl.BookService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+// REST examples API
 // GET /api/v1/book/ - все книги
-// GET /person/{id} – получение
-// POST /person - создание
-// PUT /person/{id} – изменение/замена
-// PUT /person/{id}/account – изменение связанного
-// PATCH /person/{id} – изменение/обновление
-// DELETE /person/{id} - удаление
+// GET /book/{id} – получение
+// POST /book - создание
+// PUT /book/{id} – изменение/замена
+// PUT /book/{id}/photo – изменение связанного
+// PATCH /book/{id} – изменение/обновление
+// DELETE /book/{id} - удаление
 
 @RestController
 @RequiredArgsConstructor
 public class BookController {
 
-    private final BookServiceImpl bookService;
+    private final BookService bookService;
 
     @GetMapping(value = "/api/v1/book")
     public List<BookDto> getAllBooks() {
@@ -40,28 +42,18 @@ public class BookController {
     }
 
     @GetMapping(value = "/api/v1/book", params = "title")
-    public BookDto getBookByTitleInRequest(@RequestParam("title") String title) {
-        Book book = bookService.findByTitle(title).stream().findFirst().orElseThrow(NotFoundException::new);
-        return BookDto.toDto(book);
+    public List<BookDto>  getBookByTitleInRequest(@RequestParam("title") String title) {
+        return bookService.findByTitle(title).stream()
+                .map(BookDto::toDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping(value = "/api/v1/book")
-    public BookDto addBook(@RequestBody BookDto bookDto ) { // @Valid
-        // ошибка если id не null
-        var savedBook = bookService.save(bookDto.toDomainObject());
-        return BookDto.toDto(savedBook);
+    public ResponseEntity<BookDto> addBook(@RequestBody BookDto dto) {
+        var savedBook = bookService.save(dto.toDomainObject());
+        return new ResponseEntity<>(
+                BookDto.toDto(savedBook), HttpStatus.OK);
     }
-
-//    @PutMapping(value = "/api/v1/book/{id}")
-//    public void updateBook(@RequestBody BookDto bookDto,
-//                           @PathVariable("id") long id) {
-////        bookService.save(bookDto);
-//    }
-
-//    @PatchMapping(value = "/api/v1/book/{id}")
-//    public void updateBook(@RequestBody BookDto bookDto, @PathVariable("id") long id) {
-////        bookService.save(bookDto);
-//    }
 
     @DeleteMapping(value = "/api/v1/book/{id}")
     public void deleteBook(@PathVariable("id") long id) {
@@ -71,10 +63,5 @@ public class BookController {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<String> handleNotFound(NotFoundException ex) {
         return ResponseEntity.badRequest().body("Таких тут нет!");
-    }
-
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<String> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
-        return ResponseEntity.badRequest().body("Invalid request body");
     }
 }

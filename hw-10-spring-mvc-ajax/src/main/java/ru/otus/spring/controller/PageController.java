@@ -12,12 +12,5 @@ public class PageController {
     public String mainPage() { return "index"; }
 
     @GetMapping("/save")
-    public String save() {
-        return "save";
-    }
-
-    @GetMapping("/update")
-    public String update() {
-        return "update";
-    }
+    public String save() { return "save"; }
 }
