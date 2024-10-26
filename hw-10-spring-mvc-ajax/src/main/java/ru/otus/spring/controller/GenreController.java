@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.otus.spring.dto.GenreDto;
-import ru.otus.spring.service.impl.GenreService;
+import ru.otus.spring.service.GenreService;
 
 import java.util.List;
 import java.util.stream.Collectors;

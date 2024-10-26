@@ -3,7 +3,7 @@ package ru.otus.spring.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.spring.dto.AuthorDto;
-import ru.otus.spring.service.impl.AuthorService;
+import ru.otus.spring.service.AuthorService;
 
 import java.util.List;
 import java.util.stream.Collectors;

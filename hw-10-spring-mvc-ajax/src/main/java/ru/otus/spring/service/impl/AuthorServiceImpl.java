@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.model.Author;
 import ru.otus.spring.repository.AuthorRepository;
-import ru.otus.spring.service.OutService;
+import ru.otus.spring.service.AuthorService;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ import java.util.List;
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepository authorRepository;
-    private final OutService outService;
 
     @Override
     @Transactional

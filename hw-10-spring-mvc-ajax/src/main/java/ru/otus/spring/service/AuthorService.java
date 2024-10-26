@@ -1,4 +1,4 @@
-package ru.otus.spring.service.impl;
+package ru.otus.spring.service;
 
 import ru.otus.spring.model.Author;
 

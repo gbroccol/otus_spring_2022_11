@@ -1,6 +1,7 @@
-package ru.otus.spring.service.impl;
+package ru.otus.spring.service;
 
 import org.springframework.transaction.annotation.Transactional;
+import ru.otus.spring.exception.AuthorNotFoundException;
 import ru.otus.spring.model.Book;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface BookService {
     @Transactional
     Book save(Book book);
 
-    Book save(long bookId, String title, long authorId, long genreId);
+    Book save(long bookId, String title, long authorId, long genreId) throws AuthorNotFoundException;
 
     Book findById(long id);
 

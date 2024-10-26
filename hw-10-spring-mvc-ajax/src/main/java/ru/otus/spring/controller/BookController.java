@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.otus.spring.exception.NotFoundException;
 import ru.otus.spring.dto.BookDto;
 import ru.otus.spring.model.Book;
-import ru.otus.spring.service.impl.BookService;
+import ru.otus.spring.service.BookService;
 
 import java.util.List;
 import java.util.stream.Collectors;
