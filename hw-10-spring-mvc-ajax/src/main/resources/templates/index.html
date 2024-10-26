@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all books</title>
+    <script type="text/javascript" src="js/book-get-all.js"></script>
+    <script type="text/javascript" src="js/book-delete.js"></script>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<h3>Books:</h3>
+
+<table class="books" id="bookTable">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Author</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<br>
+
+<div>
+    <button type="button">
+        <a href="save.html" th:href="@{/save}"> Add new book </a>
+    </button>
+</div>
+
+<br>
+
+<script>
+    getAllBooks()
+</script>
+
+</body>
+</html>

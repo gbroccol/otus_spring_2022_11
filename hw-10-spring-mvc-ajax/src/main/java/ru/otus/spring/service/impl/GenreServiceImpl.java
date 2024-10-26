@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.spring.repository.GenreRepository;
 import ru.otus.spring.model.Genre;
-import ru.otus.spring.service.OutService;
+import ru.otus.spring.service.GenreService;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ import java.util.List;
 public class GenreServiceImpl implements GenreService {
 
     private final GenreRepository genreRepository;
-    private final OutService outService;
 
     @Override
     @Transactional
@@ -40,12 +39,4 @@ public class GenreServiceImpl implements GenreService {
         genreRepository.deleteById(id);
     }
 
-    @Override
-    public void print(List<Genre> genres) {
-        for (Genre genre : genres) {
-            outService.outputStringNextLine(
-                    "id = " + genre.getGenreId() +
-                            "\t | title = " + genre.getTitle());
-        }
-    }
 }

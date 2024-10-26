@@ -1,4 +1,4 @@
-package ru.otus.spring.service.impl;
+package ru.otus.spring.service;
 
 import ru.otus.spring.model.Genre;
 
@@ -9,5 +9,4 @@ public interface GenreService {
     Genre findById(long id);
     List<Genre> findAll();
     void deleteById(long id);
-    void print(List<Genre> genre);
 }

@@ -13,4 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "left join fetch b.author " +
             "left join fetch b.genre")
     List<Book> findAll();
+
+    List<Book> findByTitle(String title);
+
 }

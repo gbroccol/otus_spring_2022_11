@@ -50,8 +50,8 @@ class BookRepositoryTest {
     @Test
     void shouldInsertBook() {
         Book expectedBook = new Book(null, "Собачье сердце", EXISTING_BOOK_AUTHOR, EXISTING_BOOK_GENRE, new ArrayList<>());
-        expectedBook.setBookId(bookRepository.save(expectedBook).getBookId());
-        Book actualBook = bookRepository.findById(expectedBook.getBookId()).orElse(null);
+        Book savedBook = bookRepository.save(expectedBook);
+        Book actualBook = bookRepository.findById(savedBook.getBookId()).orElse(null);
         assertThat(actualBook).usingRecursiveComparison().isEqualTo(expectedBook);
     }
 
