@@ -17,4 +17,8 @@ public class AuthorDto {
                 author.getFirstName(),
                 author.getLastName());
     }
+
+    public Author toDomainObject() {
+        return new Author(id, firstName, lastName);
+    }
 }

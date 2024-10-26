@@ -12,7 +12,6 @@ public class BookDto {
     private Long id;
 
     @NotNull
-//    @Size(min = 3, max = 20)
     private String title;
     private AuthorDto author;
     private GenreDto genre;
@@ -25,6 +24,9 @@ public class BookDto {
     }
 
     public Book toDomainObject() {
-        return new Book(id, title, null, null, null); // fix
+        return new Book(id,
+                title,
+                author.toDomainObject(),
+                genre.toDomainObject());
     }
 }
