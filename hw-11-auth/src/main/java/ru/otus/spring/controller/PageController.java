@@ -11,6 +11,12 @@ public class PageController {
     @GetMapping("/")
     public String mainPage() { return "index"; }
 
+    @GetMapping("/authenticated")
+    public String authenticated() { return "authenticated"; }
+
+    @GetMapping("/admin")
+    public String admin() { return "admin"; }
+
     @GetMapping("/save")
     public String save() { return "save"; }
 }
