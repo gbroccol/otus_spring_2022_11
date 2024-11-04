@@ -38,4 +38,10 @@ class PageControllerTest {
     public void testMainPageForUser() throws Exception {
         mockMvc.perform(get("/")).andExpect(status().isOk());
     }
+
+//    todo - не работает без роли
+//    @Test
+//    public void testMainPageNoRole() throws Exception {
+//        mockMvc.perform(get("/")).andExpect(status().isOk());
+//    }
 }
