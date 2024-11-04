@@ -20,7 +20,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((authorize) -> authorize
                         .antMatchers("/").permitAll()
                         .antMatchers("/authenticated").authenticated()
-                        .antMatchers("/admin").hasAnyRole("ADMIN")
+                        .antMatchers("/admin").hasRole("ADMIN")
                         // .anyRequest().denyAll()
                 )
                 .formLogin();
